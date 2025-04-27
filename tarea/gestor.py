@@ -31,4 +31,21 @@ def listar_tareas():
     estado = "✅" if t.completada else "❌"
     print(f"{t.id} - {t.descripcion} - Completada: {estado}")
 
+def marcar_como_completada(id_tarea):
+  tareas = cargar_tareas()
+  for t in tareas:
+    if t.id == id_tarea:
+      t.completada = True
+      guardar_tareas(tareas)
+      return t
+  return None
+
+def eliminar_tarea(id_tarea):
+  tareas = cargar_tareas()
+  for i, t in enumerate(tareas):
+    if t.id == id_tarea:
+      tareas.pop(i)
+      guardar_tareas(tareas)
+      return True
+  return False
 
